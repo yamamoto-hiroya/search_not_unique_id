@@ -1,0 +1,24 @@
+{
+    "manifest_version": 2,
+    "name": "search_not_unique_id",
+    "version": "1.0.0",
+ 
+    "description": "開いている画面の要素の重複しているid要素を調べる",
+ 
+    "icons": {
+        "16": "icons/id.png",
+        "48": "icons/id.png",
+        "128": "icons/id.png"
+    },
+
+    "browser_action": {
+      "default_icon": "icons/id.png",
+      "default_title": "Sample"
+    },
+ 
+    "content_scripts": [
+        {
+            "js": ["js/jquery-2.1.1.min.js", "js/search_not_unique_id.js"]
+        }
+    ]
+}
