@@ -35,8 +35,10 @@ $(function(){
     if(ids.length === 0){
       console.log('重複したID要素はありませんでした');
     } else {
-      console.log('重複したID要素: '+not_unique.join());
+      console.log('重複したID要素: ');
+      console.log(not_unique);
     }
+    alert('結果はconsoleを確認してください');
 
     sendResponse('Done');
   });
