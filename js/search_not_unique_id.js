@@ -1,5 +1,5 @@
 $(function(){
-  $('#search_not_unique_id').on('click', funcion(){
+  $('#search_not_unique_id').on('click', function(){
     var ids = [];
     // 画面の全要素に対してループを回す（やや遅い可能性あり）
     $.each($("*"), function(){
