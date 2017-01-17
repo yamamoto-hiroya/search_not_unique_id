@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "search_not_unique_id",
-    "version": "1.0.1",
+    "version": "1.0.2",
  
     "description": "開いている画面の要素の重複しているid要素を調べる",
  
@@ -15,9 +15,5 @@
       "default_popup": "view/popup.html",
       "default_icon": "icons/id.png",
       "default_title": "Sample"
-    },
-    "background": {
-      "scripts": ["js/jquery-2.1.1.min.js", "js/search_not_unique_id.js"]
     }
-
 }
