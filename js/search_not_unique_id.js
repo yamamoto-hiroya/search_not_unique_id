@@ -1,6 +1,19 @@
 $(function(){
-  // browser_actionアイコンをクリックしたときのアクションのAPI
-  chrome.browserAction.onClicked.addListener(function(tab) {
+  /**
+   * @param object message backgroundからポストされた値
+   * オブジェクトになっていてmessage.trigger = 'on'のような形になっている
+   * @param sender
+   * @sendResponse
+   * これらは2つとも宣言してないとsendResponseが最後に返せなかったので設定した
+   *
+   * backgroundからメッセージが送られてきた時（ブラウザボタンをクリックされた時）に発火する
+   */
+  chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+    // 意図したbackground.jsからの送信でない場合は弾く
+    if(message.trigger !== 'on'){
+      return false;
+    }
+
     var ids = [];
     // 画面の全要素に対してループを回す（やや遅い可能性あり）
     $.each($("*"), function(){
@@ -10,6 +23,7 @@ $(function(){
         ids.push(id);
       }
     });
+
     /**
      * 重複したもののみを検出する
      * @see http://qiita.com/cocottejs/items/7afe6d5f27ee7c36c61f
@@ -18,11 +32,12 @@ $(function(){
       return self.indexOf(x) === i && i !== self.lastIndexOf(x);
     });
 
-    /**
-     * このjs内だとconsole.logを吐いても通常の画面のconsoleの方には表示されず、
-     * 拡張用に宣言したbackgroundのページのconsoleに出力される
-     * わざわざそこを見るのは手間なのでとりあえずalertで出すことにした
-     */
-    alert(not_unique);
+    if(ids.length === 0){
+      console.log('重複したID要素はありませんでした');
+    } else {
+      console.log('重複したID要素: '+not_unique.join());
+    }
+
+    sendResponse('Done');
   });
 });
