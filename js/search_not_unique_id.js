@@ -1,12 +1,6 @@
 $(function(){
-  console.log("js call");
-
   // browser_actionアイコンをクリックしたときのアクションのAPI
   chrome.browserAction.onClicked.addListener(function(tab) {
-    console.log('click');
-  });
-
-  $('#search_not_unique_id').on('click', function(){
     var ids = [];
     // 画面の全要素に対してループを回す（やや遅い可能性あり）
     $.each($("*"), function(){
@@ -23,6 +17,12 @@ $(function(){
     var not_unique = ids.filter(function (x, i, self) {
       return self.indexOf(x) === i && i !== self.lastIndexOf(x);
     });
-    console.log(not_unique);
+
+    /**
+     * このjs内だとconsole.logを吐いても通常の画面のconsoleの方には表示されず、
+     * 拡張用に宣言したbackgroundのページのconsoleに出力される
+     * わざわざそこを見るのは手間なのでとりあえずalertで出すことにした
+     */
+    alert(not_unique);
   });
 });
